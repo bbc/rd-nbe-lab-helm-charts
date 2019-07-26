@@ -1,0 +1,18 @@
+# Default values for docker-hub-hello-world.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: nbelabsdocker
+  tag: latest
+
+imagePullSecrets:
+  name: dockerhub-cred
+
+secrets:
+  dockerconfigjson: PASTE_THE_DOCKERCONFIGJSON_VALUE_HERE
+
+nameOverride: ""
+fullnameOverride: ""

@@ -1,0 +1,31 @@
+questions:
+- variable: image.repository
+  default: nbelab-docker-forge.virt.ch.bbc.co.uk
+  label: Repository
+  description: URL to the Artifactory Docker registry API
+  type: string
+  group: "Artifactory Repository"
+- variable: secrets.forge.cert.name
+  default: forge-docker-cert
+  label: Cert secret name
+  description: The secret name
+  type: string
+  group: "Forge Certificate"
+- variable: secrets.forge.cert.value
+  default: FORGE_CERTIFICATE_CLIENT_AS_BASE64
+  label: Cert value
+  description: The `client.cert` file contents as a base64 string
+  type: string
+  group: "Forge Certificate"
+- variable: secrets.forge.key.name
+  default: forge-docker-key
+  label: Key secret name
+  description: The secret name
+  type: string
+  group: "Forge Certificate"
+- variable: secrets.forge.key.value
+  default: FORGE_CERTIFICATE_KEY_AS_BASE64
+  label: Key value
+  description: The `client.key` file contents as a base64 string
+  type: string
+  group: "Forge Certificate"

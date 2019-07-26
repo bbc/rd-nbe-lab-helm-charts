@@ -1,0 +1,18 @@
+# Default values for artifactory-forge-access.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: nbelab-docker-forge.virt.ch.bbc.co.uk
+
+secrets:
+  forge:
+    cert: 
+      name: forge-docker-cert
+      value: ADD_THE_NBELABS_FORGE_CERTIFICATE_CLIENT_BASE64_HERE
+    key: 
+      name: forge-docker-key
+      value: ADD_THE_NBELABS_FORGE_CERTIFICATE_KEY_BASE64_HERE
+
+nameOverride: ""
+fullnameOverride: ""

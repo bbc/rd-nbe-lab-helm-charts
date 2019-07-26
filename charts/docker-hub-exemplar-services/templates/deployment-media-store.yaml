@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: media-store
+  labels:
+{{ include "docker-hub-exemplar-services.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: media-store
+      app.kubernetes.io/name: {{ include "docker-hub-exemplar-services.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: media-store
+        app.kubernetes.io/name: {{ include "docker-hub-exemplar-services.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}/media-store:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 3000

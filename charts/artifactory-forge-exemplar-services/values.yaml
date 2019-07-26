@@ -1,0 +1,12 @@
+# Default values for artifactory-forge-exemplar-services.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: nbelab-docker-forge.virt.ch.bbc.co.uk
+  tag: latest
+
+nameOverride: ""
+fullnameOverride: ""

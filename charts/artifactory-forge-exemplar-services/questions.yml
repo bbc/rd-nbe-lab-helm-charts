@@ -1,0 +1,13 @@
+questions:
+- variable: image.repository
+  default: nbelab-docker-forge.virt.ch.bbc.co.uk
+  label: Repository
+  description: URL to the Artifactory Docker registry API
+  type: string
+  group: "Repository"
+- variable: image.tag
+  default: latest
+  label: Tag
+  description: Image tag to pull down
+  type: string
+  group: "Repository"

@@ -1,0 +1,25 @@
+questions:
+- variable: image.repository
+  default: nbelabsdocker
+  label: Repository
+  description: Username of the Docker Hub repository
+  type: string
+  group: "Docker Hub Repository"
+- variable: image.tag
+  default: latest
+  label: Tag
+  description: Image tag to pull down
+  type: string
+  group: "Docker Hub Repository"
+- variable: imagePullSecrets.name
+  default: dockerhub-cred
+  description: Docker credentials secret name
+  label: Secret name
+  type: string
+  group: "Docker Hub Access"
+- variable: secrets.dockerconfigjson
+  default: ADD_THE_BASE64_CONFIG_HERE
+  description: Docker hub login credentials as a base64 value. See the Detailed Descriptions for instructions on how to generate this.
+  label: Docker ConfigJSON secret
+  type: string
+  group: "Docker Hub Access"

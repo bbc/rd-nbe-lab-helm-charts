@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: forge-docker-cred
+  namespace: kube-system
+  labels:
+    k8s-app: forge-docker-credentials
+spec:
+  selector:
+    matchLabels:
+      name: forge-docker-cred
+  template:
+    metadata:
+      labels:
+        name: forge-docker-cred
+    spec:
+      containers:
+      - name: forge-docker-cred
+        image: busybox
+        command: [ 'sh' ]
+        args: [ '-c', 'cp /home/core/certs/{{ .Values.secrets.forge.cert.name }} /etc/docker/certs.d/{{ .Values.image.repository }}/client.cert && cp /home/core/keys/{{ .Values.secrets.forge.key.name }} /etc/docker/certs.d/{{ .Values.image.repository }}/client.key && exec tail -f /dev/null' ]
+        volumeMounts:
+        - name: etc-docker
+          mountPath: /etc/docker/certs.d/{{ .Values.image.repository }}
+        - name: ca-cert
+          mountPath: /home/core/certs
+        - name: ca-key
+          mountPath: /home/core/keys
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: etc-docker
+        hostPath:
+          path: /etc/docker/certs.d/{{ .Values.image.repository }}
+      - name: ca-cert
+        secret:
+          secretName: {{ .Values.secrets.forge.cert.name }}
+      - name: ca-key
+        secret:
+          secretName: {{ .Values.secrets.forge.key.name }}
