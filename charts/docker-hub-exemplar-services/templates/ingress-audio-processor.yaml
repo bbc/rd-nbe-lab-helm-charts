@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: media-store
+  name: audio-processor
   namespace: {{ .Release.Namespace }}
   labels:
 {{ include "docker-hub-exemplar-services.labels" . | indent 4 }}
@@ -11,5 +11,5 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: media-store
+          serviceName: audio-processor
           servicePort: 3000
