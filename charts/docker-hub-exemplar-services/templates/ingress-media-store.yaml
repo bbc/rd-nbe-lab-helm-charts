@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-world
+  namespace: {{ .Release.Namespace }}
+  labels:
+{{ include "docker-hub-exemplar-services.labels" . | indent 4 }}
+spec:
+  rules:
+  - host: media-store.<KUBERNETES-WORKER/0 PUBLIC IP>.xip.io
+    http:
+      paths:
+      - backend:
+          serviceName: media-store
+          servicePort: 3000
