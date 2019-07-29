@@ -22,7 +22,7 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}/audio-processor:{{ .Values.image.tag }}"
           ports:
-            - containerPort: 3001
+            - containerPort: 3000
           env:
             - name: MEDIA_STORE_SERVICE_HOST
               value: media-store
