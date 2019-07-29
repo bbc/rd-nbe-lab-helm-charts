@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: media-store
+  labels:
+{{ include "docker-hub-exemplar-services.labels" . | indent 4 }}
+spec:
+  selector:
+    app: media-store
+    app.kubernetes.io/name: {{ include "docker-hub-exemplar-services.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+  type: NodePort
