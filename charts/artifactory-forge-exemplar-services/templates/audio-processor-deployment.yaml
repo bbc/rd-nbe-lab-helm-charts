@@ -1,25 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: media-store
+  name: audio-processor
   labels:
 {{ include "artifactory-forge-exemplar-services.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: media-store
+      app: audio-processor
       app.kubernetes.io/name: {{ include "artifactory-forge-exemplar-services.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: media-store
+        app: audio-processor
         app.kubernetes.io/name: {{ include "artifactory-forge-exemplar-services.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}/media-store:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}/audio-processor:{{ .Values.image.tag }}"
           ports:
-            - containerPort: 3000
+            - containerPort: {{ .Values.audioProcessor.port }}
+          env:
+            - name: "{{ .Values.audioProcessor.env.host.name }}"
+              value: "{{ .Values.audioProcessor.env.host.value }}"
+            - name: "{{ .Values.audioProcessor.env.port.name }}"
+              value: "{{ .Values.audioProcessor.env.port.value }}"
+

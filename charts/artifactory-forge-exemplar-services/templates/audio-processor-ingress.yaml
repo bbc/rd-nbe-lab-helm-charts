@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: audio-processor
+  namespace: {{ .Release.Namespace }}
+  labels:
+{{ include "artifactory-forge-exemplar-services.labels" . | indent 4 }}
+spec:
+  rules:
+  - host: "xip.io"
+    http:
+      paths:
+      - backend:
+          serviceName: audio-processor
+          servicePort: {{ .Values.audioProcessor.servicePort }}

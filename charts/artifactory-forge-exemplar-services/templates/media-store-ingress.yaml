@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: media-store
+  namespace: {{ .Release.Namespace }}
+  labels:
+{{ include "artifactory-forge-exemplar-services.labels" . | indent 4 }}
+spec:
+  rules:
+  - host: "xip.io"
+    http:
+      paths:
+      - backend:
+          serviceName: media-store
+          servicePort: {{ .Values.mediaStore.servicePort }}

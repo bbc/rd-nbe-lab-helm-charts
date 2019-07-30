@@ -1,1 +1,1 @@
-A Helm chart for Kubernetes that installs the audio-processor and media-store from the artifactory forge registry. The `artifactory-forge-access` helm chart must be installed and running first.
+A Helm chart for Kubernetes that installs the audio-processor and media-store from the artifactory forge registry. The `artifactory-forge-access` helm chart must be installed and running in the same namespace first.
