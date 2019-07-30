@@ -22,11 +22,11 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}/audio-processor:{{ .Values.image.tag }}"
           ports:
-            - containerPort: 3000
+            - containerPort: {{ .Values.audioProcessor.port }}
           env:
-            - name: MEDIA_STORE_SERVICE_HOST
-              value: media-store
-            - name: MEDIA_STORE_SERVICE_PORT
-              value: "3000"
+            - name: {{ .Values.audioProcessor.env.host.name }}
+              value: {{ .Values.audioProcessor.env.host.value }}
+            - name: {{ .Values.audioProcessor.env.port.name }}
+              value: {{ .Values.audioProcessor.env.port.value }}
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets.name }}

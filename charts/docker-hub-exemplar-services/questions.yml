@@ -23,3 +23,51 @@ questions:
   label: Docker ConfigJSON secret
   type: string
   group: "Docker Hub Access"
+- variable: mediaStore.port
+  default: 3000
+  label: Port
+  description: Media store containerPort value
+  type: int
+  group: "Media Store"
+- variable: mediaStore.servicePort
+  default: 3000
+  label: Service Port
+  description: Media store servicePort value
+  type: int
+  group: "Media Store"
+- variable: audioProcessor.port
+  default: 3000
+  label: Port
+  description: Audio processor containerPort value
+  type: int
+  group: "Audio Processor"
+- variable: audioProcessor.servicePort
+  default: 3000
+  label: Service Port
+  description: Audio processor servicePort value
+  type: int
+  group: "Audio Processor"
+- variable: audioProcessor.env.host.name
+  default: MEDIA_STORE_SERVICE_HOST
+  label: Media store service host environment variable name
+  description: Environment variable name for the media store service host
+  type: string
+  group: "Audio Processor"
+- variable: audioProcessor.env.host.value
+  default: "media-store"
+  label: Media store service host environment variable
+  description: Environment variable value for the media store service host
+  type: string
+  group: "Audio Processor"
+- variable: audioProcessor.env.port.name
+  default: MEDIA_STORE_SERVICE_PORT
+  label: Media store service port environment variable name
+  description: Environment variable name for the media store service port number, to match the ingress on the media store.
+  type: string
+  group: "Audio Processor"
+- variable: audioProcessor.env.port.value
+  default: "3000"
+  label: Media store service port environment variable
+  description: Environment variable value for the media store service port number
+  type: string
+  group: "Audio Processor"

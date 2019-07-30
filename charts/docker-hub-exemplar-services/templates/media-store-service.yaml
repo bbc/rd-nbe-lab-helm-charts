@@ -11,6 +11,6 @@ spec:
     app.kubernetes.io/instance: {{ .Release.Name }}
   ports:
   - protocol: TCP
-    port: 3000
-    targetPort: 3000
+    port: {{ .Values.mediaStore.port }}
+    targetPort: {{ .Values.mediaStore.servicePort }}
   type: NodePort

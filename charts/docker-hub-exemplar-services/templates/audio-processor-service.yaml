@@ -11,6 +11,6 @@ spec:
     app.kubernetes.io/instance: {{ .Release.Name }}
   ports:
   - protocol: TCP
-    port: 3000
-    targetPort: 3000
+    port: {{ .Values.audioProcessor.port }}
+    targetPort: {{ .Values.audioProcessor.servicePort }}
   type: NodePort
