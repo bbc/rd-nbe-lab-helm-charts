@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brave-input-deployment
+  labels:
+    app: brave-input-deployment-label
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: brave-input-label
+  template:
+    metadata:
+      labels:
+        app: brave-input-label
+    spec:
+      containers:
+        - name: brave-container
+          image: meloyd/brave
+          ports:
+            - name: api
+              containerPort: 5000
+            - name: output
+              containerPort: 7000
