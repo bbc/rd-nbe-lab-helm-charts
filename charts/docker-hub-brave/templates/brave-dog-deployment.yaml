@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brave-dog
+  labels:
+{{ include "docker-hub-brave.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: brave-dog
+      app.kubernetes.io/name: {{ include "docker-hub-brave.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: brave-dog
+        app.kubernetes.io/name: {{ include "docker-hub-brave.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}/brave:{{ .Values.image.tag }}"
+          ports:
+            - name: api
+              containerPort: 5000
+            - name: output
+              containerPort: 7000

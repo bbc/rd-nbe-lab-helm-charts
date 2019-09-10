@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: brave-dog
+  namespace: {{ .Release.Namespace }}
+  labels:
+{{ include "docker-hub-brave.labels" . | indent 4 }}
+spec:
+  rules:
+  - host: "xip.io"
+    http:
+      paths:
+      - backend:
+          serviceName: brave-dog
+          servicePort: {{ .Values.braveDog.servicePort }}
