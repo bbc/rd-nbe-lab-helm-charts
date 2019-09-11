@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: brave-input
+  name: brave
   labels:
 {{ include "docker-hub-brave.labels" . | indent 4 }}
 spec:
   selector:
-    app: brave-input
+    app: brave
     app.kubernetes.io/name: {{ include "docker-hub-brave.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
   type: NodePort

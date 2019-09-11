@@ -1,0 +1,13 @@
+questions:
+- variable: image.repository
+  default: meloyd
+  label: Repository
+  description: Username of the Docker Hub repository
+  type: string
+  group: "Docker Hub Repository"
+- variable: image.tag
+  default: latest
+  label: Tag
+  description: Image tag to pull down
+  type: string
+  group: "Docker Hub Repository"

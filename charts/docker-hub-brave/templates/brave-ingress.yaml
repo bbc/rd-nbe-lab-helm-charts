@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: brave-input
+  name: brave
   namespace: {{ .Release.Namespace }}
   labels:
 {{ include "docker-hub-brave.labels" . | indent 4 }}
@@ -11,5 +11,5 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: brave-input
-          servicePort: {{ .Values.braveInput.servicePort }}
+          serviceName: brave
+          servicePort: 5000
