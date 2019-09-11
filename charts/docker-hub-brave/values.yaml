@@ -6,6 +6,3 @@ replicaCount: 1
 image:
   repository: meloyd
   tag: latest
-
-nameOverride: ""
-fullnameOverride: ""

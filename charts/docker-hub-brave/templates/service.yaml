@@ -1,12 +1,13 @@
+{{- $name := default "brave" .Release.Name -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: brave
+  name: {{ $name }}
   labels:
 {{ include "docker-hub-brave.labels" . | indent 4 }}
 spec:
   selector:
-    app: brave
+    app: {{ $name }}
     app.kubernetes.io/name: {{ include "docker-hub-brave.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
   type: NodePort
