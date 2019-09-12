@@ -1,0 +1,29 @@
+{{- $name := default "brave" .Release.Name -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+  labels:
+{{ include "docker-hub-brave.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ $name }}
+      app.kubernetes.io/name: {{ include "docker-hub-brave.name" . }}
+      app.kubernetes.io/instance: {{ $name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $name }}
+        app.kubernetes.io/name: {{ include "docker-hub-brave.name" . }}
+        app.kubernetes.io/instance: {{ $name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}/brave:{{ .Values.image.tag }}"
+          ports:
+            - name: api
+              containerPort: 5000
+            - name: output
+              containerPort: 7000

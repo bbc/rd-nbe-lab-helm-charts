@@ -1,0 +1,16 @@
+{{- $name := default "brave" .Release.Name -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+{{ include "docker-hub-brave.labels" . | indent 4 }}
+spec:
+  rules:
+  - host: "xip.io"
+    http:
+      paths:
+      - backend:
+          serviceName: {{ $name }}
+          servicePort: 5000
