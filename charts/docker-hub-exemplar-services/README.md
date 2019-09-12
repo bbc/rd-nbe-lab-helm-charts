@@ -1,6 +1,6 @@
 # Exemplar Services Docker Hub Helm Chart
 
-This is a Helm chart for Kubernetes that that installs the `media-store` and `audio-processor` image from [Docker Hub](https://hub.docker.com).
+This is a Helm chart for Kubernetes that installs the `media-store` and `audio-processor` image from [Docker Hub](https://hub.docker.com).
 
 In this example we are using a free Docker Hub account, so only the `audio-processor` is using a private repository. The `media-store` image is public so will not require any authentication.
 
@@ -94,8 +94,8 @@ secrets:
 Now everything is setup, you can install the Helm chart with:
 
 ```bash
-# Navigate to the chart directory
-cd exemplar-services/heml-charts
+# Navigate to the chart directory from the repo root
+cd charts
 
 # Install the chart
 helm install docker-hub-exemplar-services
